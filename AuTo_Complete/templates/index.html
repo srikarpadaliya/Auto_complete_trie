@@ -1,0 +1,33 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+ <title>{% block title %}Autocomplete Python{% endblock %}</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body style="background-color: rgb(27, 27, 50);">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+  <!-- <script src="{% static '/myapp.js' %}"></script> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Searchbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+
+    </div>
+  </div>
+</nav>
+ <div class="container" style="padding:20px;">
+    <div class="col-md-12 well">
+        <h2 id = 'myid' class="text-primary" style="color: rgb(40, 68, 250); font-weight: 600;">AUTO SEARCH COMPLETE</h2> 
+        <hr style="border-top:1px dotted #161232;"/>
+  {% block content %} {% endblock %}
+    </div>
+    </div> 
+</body>
+</html>

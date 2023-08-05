@@ -1,0 +1,70 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<p style="color: white;">Search here:</p>
+    <!-- <form action="/searchlist" method="POST" autocomplete="off">
+    {% csrf_token %} -->
+    <input id = 'inputval' type="search" name = "mylist" list = "citylist" Placeholder="Search.." class="form-control" style="width:300px;" onkeyup="getRequest()" autocomplete="off">
+    
+    <script>
+   const getRequest = async()=>
+    {
+    var inputvalue = document.getElementById('inputval').value;
+
+    // console.log(inputvalue);
+      
+    var select = document.getElementById("select");
+    select.innerHTML = '';
+    const response = await axios.get('searchvalues' , {
+        params: { "values" : inputvalue } 
+    })
+    
+
+    // document.getElementById('myid').innerHTML = response.data.returnvalues[1];
+
+    var select = document.getElementById("select");
+
+    console.log(response.data.returnvalues[0])
+    for (const val of response.data.returnvalues)
+    {
+        var option = document.createElement("option");
+        option.value = val;
+        option.text = val.charAt(0).toUpperCase() + val.slice(1);
+        select.appendChild(option);
+    }
+    }
+    </script>
+    <!-- <div style="padding-top: 20px;">
+    <button class="btn btn-primary" type="submit">Search</button>
+    </form>
+    </div>  -->
+
+    <!-- <div style="padding-top: 20px;">
+    <ul class="list-group">
+        {% for results in result%}
+        <li class="list-group-item">{{results}}</li>
+        {% endfor %}
+      </ul>
+    </div> -->
+    <!-- <datalist id="citylist"  class="col-sm-6 custom-select-sm">
+ {% for results in result %}
+        <option style="background-color: wheat; color: red;" value="{{ results}}">
+ {% endfor %}
+    </datalist> -->
+
+    
+    <div style="padding-top: 30px;">
+    <form action="/choice" method = "POST">
+       {% csrf_token %}
+      <label for="cars" style="color: white;">Choose recommended word:</label>
+      <select name="word" id="select">
+        <!-- {% for results in resulting %}
+        <option value={{results}}>{{results}}</option>
+        {% endfor %} -->
+      </select>
+      <br><br>
+      <input type="submit" value="SAVE">
+    </form>
+   </div> 
+
+{% endblock %}
